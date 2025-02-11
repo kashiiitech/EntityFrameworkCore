@@ -10,6 +10,8 @@ public class MoviesContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=MoviesDB;User Id=sa;Password=Admin@123;TrustServerCertificate=True;");
+        // Not proper logging
+        optionsBuilder.LogTo(Console.WriteLine);
         base.OnConfiguring(optionsBuilder);
     }
 }
