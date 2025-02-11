@@ -18,6 +18,7 @@ public class MoviesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new GenreMapping());
         modelBuilder.ApplyConfiguration(new MovieMapping());
     }
 }
