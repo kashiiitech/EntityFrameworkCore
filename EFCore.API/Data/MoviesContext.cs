@@ -1,3 +1,4 @@
+using EFCore.API.Data.EntityMapping;
 using EFCore.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +14,10 @@ public class MoviesContext : DbContext
         // Not proper logging
         optionsBuilder.LogTo(Console.WriteLine);
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new MovieMapping());
     }
 }
