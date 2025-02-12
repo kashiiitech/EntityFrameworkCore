@@ -11,6 +11,7 @@ public class MovieMapping : IEntityTypeConfiguration<Movie>
     {
         builder
             .ToTable("Pictures")
+            .HasQueryFilter(movie => movie.ReleaseDate >= new DateTime(2000, 1, 1))  // show the movies after 2000, if there are movies in our DB that are before 2000 it will not show
             .HasKey(movie => movie.Identifier);
         
         // modifying properties movie columns
