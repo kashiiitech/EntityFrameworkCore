@@ -10,7 +10,8 @@ public class GenreMapping : IEntityTypeConfiguration<Genre>
     public void Configure(EntityTypeBuilder<Genre> builder)
     {
 
-        builder.Property(genre => genre.CreatedDate)
+        builder.Property<DateTime>("CreatedDate")
+            .HasColumnName("CraetedAt")
             // .HasDefaultValueSql("getdate()");
             .HasValueGenerator<CreatedDateTimeGenerator>();
         

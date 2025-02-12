@@ -6,9 +6,6 @@ public class Genre
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    
-    [JsonIgnore] 
-    public DateTime CreatedDate { get; set; }
 
     // Navigation properties that allow us to querry all of the movies that have the same genre
     [JsonIgnore]
