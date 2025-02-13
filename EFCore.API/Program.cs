@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using EFCore.API.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,13 @@ var app = builder.Build();
 // DIRTY HACK, we will come back to fix this
 var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<MoviesContext>();
-context.Database.EnsureDeleted(); // all the data will be losted
-context.Database.EnsureCreated(); // we will recreate it
+// context.Database.EnsureDeleted(); // all the data will be losted
+// context.Database.EnsureCreated(); // we will recreate it
+// await context.Database.MigrateAsync();
+
+var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+if (pendingMigrations.Count() > 0)
+    throw new Exception("Database is not fully migrated for moviesContext.");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
