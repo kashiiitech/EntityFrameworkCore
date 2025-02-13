@@ -10,6 +10,8 @@ public class MoviesContext : DbContext
         :base(options)
     { }
     
+    public MoviesContext() { }
+    
     public DbSet<Genre> Genres => Set<Genre>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
