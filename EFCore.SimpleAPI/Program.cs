@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using EFCore.SimpleAPI.Data;
+using EfCore.SimpleAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 
 // Add a DbContext here
 builder.Services.AddDbContext<MoviesContext>(opt =>
